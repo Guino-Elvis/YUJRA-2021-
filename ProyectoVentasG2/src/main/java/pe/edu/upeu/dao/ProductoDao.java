@@ -15,8 +15,6 @@ public class ProductoDao extends AppCrud {
     LeerTeclado lte=new LeerTeclado();
     UtilsX ut=new UtilsX();
     
-
-    
     public Object[][] crearProducto() {
         System.out.println("-------------Registro de Productos------------");
         mostrarCategoria();

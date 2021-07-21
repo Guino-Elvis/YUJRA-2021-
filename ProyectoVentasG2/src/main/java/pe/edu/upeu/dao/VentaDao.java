@@ -92,8 +92,18 @@ public class VentaDao extends AppCrud{
         vdTO.setPrecioUnit(precioUnit+precioUnit*porcentUt);
         vdTO.setPrecioTotal(vdTO.getCantidad()*vdTO.getPrecioUnit());
         lar=new LeerArchivo("VentaDetalle.txt");
-        agregarContenido(lar, vdTO);   
+       
+        agregarContenido(lar, vdTO);  
+        restarstcok(vdTO.getCantidad(),dataProd);
         return vdTO;
+    }
+
+    public void restarstcok(double cantidad,Object[][] stock){
+        lar=new LeerArchivo("Producto.txt");
+        ProductoTO stoxk =new ProductoTO(); 
+        stoxk.setIdProducto(stock[0][0].toString());
+        stoxk.setStock(Double.parseDouble(stock[0][6].toString())- cantidad);
+        editarRegistro(lar, 0, stoxk.getIdProducto(),stoxk);
     }
 
     public void mostrarProductos() {
